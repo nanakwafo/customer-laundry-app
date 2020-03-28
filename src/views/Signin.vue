@@ -27,8 +27,8 @@
                 <v-row no-gutters align="start" justify="end" style="height: 10%">
                     <v-col no-gutters cols="12" sm="4">
                         <div class="text-center ">
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" @click="$router.push('signin')">SignIn</v-btn>
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" @click="$router.push('signout')" >SignUp</v-btn>
+                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary">SignIn</v-btn>
+                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" dark>SignUp</v-btn>
 
                         </div>
                     </v-col>
@@ -37,12 +37,7 @@
                 <v-divider></v-divider>
                 <v-row no-gutters align="center" justify="center" style="height: 50%">
                     <v-col no-gutters cols="6" sm="3">
-                        <v-text-field :rules="rules" placeholder="Enter postcode or Address"></v-text-field>
-                        <v-btn depressed="" rounded color="primary" class="font-weight-light" dark @click="$router.push('laundry')">
-                            <v-icon left>search</v-icon>
-                            <span>Search</span>
-
-                        </v-btn>
+                        
                     </v-col>
 
                 </v-row>
