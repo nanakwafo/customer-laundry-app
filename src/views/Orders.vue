@@ -1,6 +1,6 @@
 <template>
 <div class="dashboard">
-    <h1 class="subheading grey-text"> Projects</h1>
+    <h1 class="font-weight-thin grey-text ma-5"> My Orders</h1>
 
     <v-container class="my-5">
 

@@ -1,23 +1,31 @@
 <template>
 <v-app id="inspire">
     <v-navigation-drawer color="amber lighten-1" v-model="drawer" app>
-        <v-layout column align-center>
-            <v-flex class="mt-5">
+        <v-layout column class="align-center">
+            <v-flex class="mt-5 ">
                 <v-avatar size="100">
                     <img src="/img/avatar1.png" alt="">
                 </v-avatar>
-                <p class="white--text subheading mt-1">
-                    Kwafo Nana Mensah
+                <p class="ma-0 pa-0">
+                    <span class="primary--text font-weight-thin caption"> Kwafo Nana Mensah </span>
                 </p>
+
+                <p class="ma-0 pa-0">
+                    <v-chip class="ma-2 white--text primary" x-small>
+                        Account Verified
+                    </v-chip>
+
+                </p>
+
             </v-flex>
         </v-layout>
         <v-list dense>
             <v-list-item v-for="link in links" :key="link.text" router :to="link.route">
                 <v-list-item-action>
-                    <v-icon class="white--text">{{link.icon}}</v-icon>
+                    <v-icon class="primary--text">{{link.icon}}</v-icon>
                 </v-list-item-action>
                 <v-list-item-content>
-                    <v-list-item-title class="white--text">{{link.text}}</v-list-item-title>
+                    <v-list-item-title class="primary--text font-weight-thin caption">{{link.text}}</v-list-item-title>
                 </v-list-item-content>
             </v-list-item>
         </v-list>
@@ -31,21 +39,21 @@
             <span> Laundry</span>
         </v-toolbar-title>
         <v-spacer></v-spacer>
-        <!-- dropdown -->
+
         <v-menu offset-y>
             <template v-slot:activator="{ on }">
-                <v-btn  depressed="" color="grey ligthen-5" dark v-on="on">
-                    <v-icon left >expand_more</v-icon>
-                       menu
+                <v-btn depressed="" color="grey ligthen-5" dark v-on="on">
+                    <v-icon left>expand_more</v-icon>
+                    menu
                 </v-btn>
             </template>
             <v-list>
-                <v-list-item v-for="(item, index) in items" :key="index" >
+                <v-list-item v-for="(item, index) in items" :key="index">
                     <v-list-item-title>{{ item.title }}</v-list-item-title>
                 </v-list-item>
             </v-list>
         </v-menu>
-        <!-- dropdown end -->
+
         <v-btn depressed color="grey lighten-5">
             <v-icon right>exit_to_app</v-icon>
         </v-btn>
@@ -67,29 +75,44 @@ export default {
     },
     data: () => ({
         drawer: null,
-        links: [{
+        links: [
+            {
+                icon: 'person',
+                text: 'Profile',
+                route: '/profile'
+            },
+            {
                 icon: 'dashboard',
                 text: 'Dashboard',
                 route: '/dashboard'
             },
             {
-                icon: 'folder',
-                text: 'My Projects',
-                route: '/projects'
+                icon: 'list',
+                text: 'My Orders',
+                route: '/orders'
             },
             {
-                icon: 'person',
-                text: 'Team',
-                route: '/team'
+                icon: 'find_replace',
+                text: 'Laundry',
+                route: '/laundry'
             },
 
         ],
         items: [
-        { title: 'Dashboard' },
-        { title: 'Projects' },
-        { title: 'Team' },
-        { title: 'Click Me 2' },
-      ],
+             {
+                title: 'Profile'
+            },
+            {
+                title: 'Dashboard'
+            },
+            {
+                title: 'Orders'
+            },
+            {
+                title: 'Laundry'
+            },
+            
+        ],
     }),
 }
 </script>
