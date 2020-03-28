@@ -40,19 +40,6 @@
         </v-toolbar-title>
         <v-spacer></v-spacer>
 
-        <v-menu offset-y>
-            <template v-slot:activator="{ on }">
-                <v-btn depressed="" color="grey ligthen-5" dark v-on="on">
-                    <v-icon left>expand_more</v-icon>
-                    menu
-                </v-btn>
-            </template>
-            <v-list>
-                <v-list-item v-for="(item, index) in items" :key="index">
-                    <v-list-item-title>{{ item.title }}</v-list-item-title>
-                </v-list-item>
-            </v-list>
-        </v-menu>
 
         <v-btn depressed color="grey lighten-5">
             <v-icon right>exit_to_app</v-icon>
@@ -62,9 +49,7 @@
     <v-content class="grey lighten-5">
         <router-view></router-view>
     </v-content>
-    <!-- <v-footer color="indigo" app>
-        <span class="white--text">&copy; 2019</span>
-    </v-footer> -->
+  
 </v-app>
 </template>
 

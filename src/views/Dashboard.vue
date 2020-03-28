@@ -2,48 +2,63 @@
 <div class="dashboard grey lighten-5 ma-4">
     <h1 class="font-weight-thin grey-text ma-5"> Dashboard</h1>
 
-    <v-container class="my-5">
-        <v-layout row class="mb-3">
-            <v-tooltip top>
-                <template v-slot:activator="{ on }">
-                    <v-btn small flat depressed="" color="grey lighten-5" @click="sortby('title')" v-on="on">
-                    <v-icon left flat>folder</v-icon>
-                    <span class="caption text-lowercase">by Projectname</span>
-                </v-btn>
-                </template>
-                
-                <span>order by project name</span>
-            </v-tooltip>
-            <v-btn small flat depressed="" color="grey lighten-5" @click="sortby('person')">
-                <v-icon left flat>person</v-icon>
-                <span class="caption text-lowercase">by Projectname</span>
-            </v-btn>
-        </v-layout>
-        <v-card flat class="mydata" v-for="project in projects" :key="project.title">
-            <v-layout row wrap :class="` pa-3 project ${project.status}`">
-                <v-flex xs6 md6>
-                    <div class="caption grey--text">Project Title</div>
-                    <div>{{project.title}}</div>
-                </v-flex>
+    <v-container class="">
 
-                <v-flex xs6 sm4 md2>
-                    <div class="caption grey--text">Person</div>
-                    <div>{{project.person}}</div>
-                </v-flex>
+        <v-card flat class="mydata pa-6">
 
-                <v-flex xs6 sm4 md2>
-                    <div class="caption grey--text">Due By</div>
-                    <div>{{project.Dueby}}</div>
-                </v-flex>
+            <v-row no-gutters>
 
-                <v-flex xs2 sm4 md2>
-                    <div class="right">
-                        <v-chip small :class="` ${project.status} white--text  caption my-3`">{{project.status}}</v-chip>
-                    </div>
-                </v-flex>
+                <v-col cols="12" sm="4" class="">
+                    <p class="font-weight-thin justify-center mx-10"> Your current Laundry status</p>
+                    <v-timeline>
 
-            </v-layout>
-            <v-divider></v-divider>
+                        <v-timeline-item v-for="(year, i) in years" :key="i" :color="year.color" small>
+                            <template v-slot:opposite>
+                                <span :class="` font-weight-thin ${year.color}--text`" v-text="year.year"></span>
+                            </template>
+                            <div class="py-4">
+                                <span :class="`font-weight-thin mb-4 ${year.color}--text`">Lorem ipsum</span>
+
+                            </div>
+                        </v-timeline-item>
+                    </v-timeline>
+                </v-col>
+                <v-col cols="12" sm="4" class="">
+
+                    <v-sheet color="red accent-4 justify-center ma-3 px-3" height="100"  tile="false">
+                        <span class="font-weight-thin  white--text">Total Requests: </span>
+                        <span class="display-3 font-weight-thin white--text">0.00</span>
+                    </v-sheet>
+
+                    <v-sheet color="yellow accent-4 justify-center ma-3  px-3" height="100"  tile="false">
+                        <span class="font-weight-thin  white--text">Total Requests: </span>
+                        <span class="display-3 font-weight-thin white--text">0.00</span>
+                    </v-sheet>
+
+                    <v-sheet color="orange accent-4 justify-center ma-3  px-3" height="100"  tile="false">
+                        <span class="font-weight-thin  white--text">Total Requests: </span>
+                        <span class="display-3 font-weight-thin white--text">0.00</span>
+                    </v-sheet>
+
+                </v-col>
+                <v-col cols="12" sm="4" >
+                    
+                        <v-toolbar color="green" dark dense flat class="ma-3">
+                            <v-toolbar-title class="body-2">Promotions</v-toolbar-title>
+                        </v-toolbar>
+                        <v-card-text>
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                        </v-card-text>
+
+                        <v-card-actions>
+                            <v-spacer></v-spacer>
+                            <v-icon large @click="next">
+                                mdi-chevron-right
+                            </v-icon>
+                        </v-card-actions>
+                  
+                </v-col>
+            </v-row>
 
         </v-card>
     </v-container>
@@ -54,83 +69,27 @@
 export default {
     data() {
         return {
-            projects: [{
-                    title: 'Desoidod1',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'complete'
+            years: [{
+                    color: 'cyan',
+                    year: '19:60 am',
                 },
                 {
-                    title: 'Aesoidod2',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'ongoing'
+                    color: 'amber',
+                    year: '19:90 pm',
                 },
                 {
-                    title: 'Desoidod3',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'overdue'
+                    color: 'green',
+                    year: '19:70 pm',
                 },
-                {
-                    title: 'Desoidod4',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'overdue'
-                },
-                {
-                    title: 'Desoidod5',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'ongoing'
-                },
-                {
-                    title: 'Desoidod6',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'complete'
-                },
-                {
-                    title: 'Desoidod7',
-                    person: 'kndj',
-                    Dueby: 'jdjd',
-                    status: 'ongoing'
-                },
-            ]
+
+            ],
         }
 
     },
-    methods: {
-        sortby(prop) {
-            this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
-        }
-    }
 
 }
 </script>
 
 <style scoped>
-.project.complete {
-    border-left: 4px solid #3cd1c2 !important;
-}
 
-.project.ongoing {
-    border-left: 4px solid orange !important;
-}
-
-.project.overdue {
-    border-left: 4px solid tomato !important;
-}
-
-.v-chip.complete {
-    background-color: #3cd1c2 !important;
-}
-
-.v-chip.ongoing {
-    background-color: orange !important;
-}
-
-.v-chip.overdue {
-    background-color: tomato !important;
-}
 </style>
