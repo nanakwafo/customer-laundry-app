@@ -25,17 +25,17 @@
                 </v-col>
                 <v-col cols="12" sm="4" class="">
 
-                    <v-sheet color="red accent-4 justify-center ma-3 px-3" height="100"  tile="false">
+                    <v-sheet color="red accent-4 justify-center ma-3 px-3" height="100" tile  >
                         <span class="font-weight-thin  white--text">Total Requests: </span>
                         <span class="display-3 font-weight-thin white--text">0.00</span>
                     </v-sheet>
 
-                    <v-sheet color="yellow accent-4 justify-center ma-3  px-3" height="100"  tile="false">
+                    <v-sheet color="yellow accent-4 justify-center ma-3  px-3" height="100"  til>
                         <span class="font-weight-thin  white--text">Total Requests: </span>
                         <span class="display-3 font-weight-thin white--text">0.00</span>
                     </v-sheet>
 
-                    <v-sheet color="orange accent-4 justify-center ma-3  px-3" height="100"  tile="false">
+                    <v-sheet color="orange accent-4 justify-center ma-3  px-3" height="100"  tile>
                         <span class="font-weight-thin  white--text">Total Requests: </span>
                         <span class="display-3 font-weight-thin white--text">0.00</span>
                     </v-sheet>
@@ -52,7 +52,7 @@
 
                         <v-card-actions>
                             <v-spacer></v-spacer>
-                            <v-icon large @click="next">
+                            <v-icon large >
                                 mdi-chevron-right
                             </v-icon>
                         </v-card-actions>

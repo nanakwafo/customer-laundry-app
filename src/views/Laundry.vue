@@ -4,7 +4,7 @@
     <v-container class="ma-0">
         <v-layout row wrap class="justify-center">
             <v-col cols="12" sm="6">
-                <v-text-field v-model="label" label="Search by Postcode or Address"></v-text-field>
+                <v-text-field label="Search by Postcode or Address"></v-text-field>
 
             </v-col>
         </v-layout>
@@ -41,12 +41,12 @@
                                 <div class="subheading font-weight-thin">Services</div>
                                 <v-divider></v-divider>
                                 <v-row justify="start" class="font-weight-thin">
-                                    <v-checkbox v-model="disabled" class="mx-2" label="Wash and Dry"></v-checkbox>
-                                    <v-checkbox v-model="readonly" class="mx-2" label="Iron"></v-checkbox>
-                                    <v-checkbox v-model="error" class="mx-2" label="Dry Cleaning"></v-checkbox>
-                                    <v-checkbox v-model="success" class="mx-2" label="Ironing Only"></v-checkbox>
-                                    <v-checkbox v-model="success" class="mx-2" label="Duvets and BulkItems"></v-checkbox>
-                                    <v-checkbox v-model="success" class="mx-2" label="Success"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Wash and Dry"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Iron"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Dry Cleaning"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Ironing Only"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Duvets and BulkItems"></v-checkbox>
+                                    <v-checkbox  class="mx-2" label="Success"></v-checkbox>
                                 </v-row>
                                
                                 <v-divider></v-divider>
