@@ -26,11 +26,8 @@
                                 <div class="grey--text font-weight-thin">Postcode: ls150ap</div>
                             </v-card-text>
                             <v-card-actions>
-                                <v-btn depressed="" color="grey lighten-5" left class="font-weight-thin">
-                                    <v-icon small left>message</v-icon>
-                                    <span class="font-weight-thin">Message</span>
-                                </v-btn>
 
+                                <Chat/>
                                 <span right class="mx-2">
                                     <v-rating large v-model="rating"></v-rating>
                                 </span>
@@ -41,16 +38,16 @@
                                 <div class="subheading font-weight-thin">Services</div>
                                 <v-divider></v-divider>
                                 <v-row justify="start" class="font-weight-thin">
-                                    <v-checkbox  class="mx-2" label="Wash and Dry"></v-checkbox>
-                                    <v-checkbox  class="mx-2" label="Iron"></v-checkbox>
-                                    <v-checkbox  class="mx-2" label="Dry Cleaning"></v-checkbox>
-                                    <v-checkbox  class="mx-2" label="Ironing Only"></v-checkbox>
-                                    <v-checkbox  class="mx-2" label="Duvets and BulkItems"></v-checkbox>
-                                    <v-checkbox  class="mx-2" label="Success"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Wash and Dry"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Iron"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Dry Cleaning"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Ironing Only"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Duvets and BulkItems"></v-checkbox>
+                                    <v-checkbox class="mx-2" label="Success"></v-checkbox>
                                 </v-row>
-                               
+
                                 <v-divider></v-divider>
-                               
+
                             </v-card-text>
 
                         </v-col>
@@ -70,10 +67,15 @@
 </template>
 
 <script>
+import Chat from '../views/Chat'
 export default {
+    components: {
+        Chat
+    },
     data() {
         return {
-            team: [{
+            
+        team: [{
                     name: 'My Laundry',
                     role: '233 Cartmell drive',
                     avatar: '/img/avatar1.png'
