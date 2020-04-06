@@ -25,12 +25,12 @@
                                 <div class="grey--text font-weight-thin">Location: {{person.role}}</div>
                                 <div class="grey--text font-weight-thin">Postcode: ls150ap</div>
                             </v-card-text>
-                            <v-card-actions>
+                            <v-card-actions class="float-left">
 
-                                <Chat/>
-                                <span right class="mx-2">
-                                    <v-rating large v-model="rating"></v-rating>
-                                </span>
+                              <Chat />
+                                
+                             <v-rating class="mx-4" large v-model="rating"></v-rating>
+                               
                             </v-card-actions>
                         </v-col>
                         <v-col cols="12" sm="4">
@@ -53,7 +53,7 @@
                         </v-col>
                         <v-col cols="12" sm="4">
                             <div class="text-center font-weight-thin">
-                                <v-btn depressed="" rounded color="primary" class="font-weight-thin">Checkout Now</v-btn>
+                                <v-btn depressed=""  @click="$router.push('checkout')" rounded color="primary" class="font-weight-thin">Checkout Now</v-btn>
                             </div>
                         </v-col>
                     </v-row>

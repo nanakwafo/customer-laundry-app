@@ -41,7 +41,7 @@
         <v-spacer></v-spacer>
 
 
-        <v-btn depressed color="grey lighten-5">
+        <v-btn depressed color="grey lighten-5" @click="$router.push('/')">
             <v-icon right>exit_to_app</v-icon>
         </v-btn>
     </v-app-bar>
