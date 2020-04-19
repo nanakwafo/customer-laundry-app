@@ -6,7 +6,9 @@ module.exports = {
     pluginOptions: {
 
     },
-
+    devServer: {
+        proxy: 'http://localhost:8088'
+    },
     transpileDependencies: [
         'vuetify',
 
