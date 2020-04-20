@@ -28,7 +28,7 @@
                     <v-col no-gutters cols="12" sm="4">
                         <div class="text-center ">
                             <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" @click="$router.push('signin')">SignIn</v-btn>
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" @click="$router.push('signout')" >SignUp</v-btn>
+                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" @click="$router.push('signup')" >SignUp</v-btn>
 
                         </div>
                     </v-col>

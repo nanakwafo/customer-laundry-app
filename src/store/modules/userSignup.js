@@ -33,12 +33,15 @@ const userSignup = {
                 .post('http://localhost:8080/api/v1/User/createwithoutactivation', JSON.stringify(signupDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODcyNTMyNTYsImV4cCI6MTU4NzI1Njg1NiwibmJmIjoxNTg3MjUzMjU2LCJqdGkiOiJrQWxqb3UxVE9PSThoNWJtIiwic3ViIjoyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.JtzEwGZeF-dVKMsxVAoT8_b-mmMQmXtkbooewcQ7vPg'
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MDU2NTQsImV4cCI6MTU4NzQwOTI1NCwibmJmIjoxNTg3NDA1NjU0LCJqdGkiOiJwUWVqMzVKSE9yM2lvbzRZIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XcYX6wqgxNPYcf0lSLJSf5g8zwlynUUK4_pQLu4Lj80'
                     }
                 })
                 .then(response => {
-                    //console.log(response.data.status);
+
                     //store resonse to localstoage
+                    localStorage.setItem('isRegisteringEmail', response.data.Data.email);
+                    localStorage.setItem('isRegisteringStage', 'verification');
+                    //Return response to view
                     context.commit('SignupEmailResponse', response.data)
                         //log request
                 }).catch(error => {
@@ -54,7 +57,7 @@ const userSignup = {
                 .post('http://localhost:8080/api/v1/User/createwithoutactivation', JSON.stringify(signupDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODcyNTMyNTYsImV4cCI6MTU4NzI1Njg1NiwibmJmIjoxNTg3MjUzMjU2LCJqdGkiOiJrQWxqb3UxVE9PSThoNWJtIiwic3ViIjoyLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.JtzEwGZeF-dVKMsxVAoT8_b-mmMQmXtkbooewcQ7vPg'
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MDU2NTQsImV4cCI6MTU4NzQwOTI1NCwibmJmIjoxNTg3NDA1NjU0LCJqdGkiOiJwUWVqMzVKSE9yM2lvbzRZIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XcYX6wqgxNPYcf0lSLJSf5g8zwlynUUK4_pQLu4Lj80'
                     }
                 })
                 .then(response => {

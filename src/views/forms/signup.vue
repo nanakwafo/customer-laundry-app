@@ -10,7 +10,7 @@
             <v-layout column wrap>
                 <v-flex>
                     <v-card-text>
-                         <div v-if="showEmailVerificationForm">
+                        <div v-if="showEmailVerificationForm">
                             <span class="caption grey--text text--darken-1">
 
                                 A verification code has been sent to your account
@@ -27,7 +27,7 @@
                                 <v-btn @click="MOBILESIGNUPsubmit()" depressed="" class=" font-weight-thin text-transform-none" rounded color="primary">Submit</v-btn>
                             </v-row>
                         </div>
-                       
+
                     </v-card-text>
                 </v-flex>
             </v-layout>
@@ -48,7 +48,12 @@
                                 <v-btn @click="EMAILVERIFYsubmit()" depressed="" class=" font-weight-thin text-transform-none" rounded color="primary">Verify</v-btn>
                             </v-row>
                         </div>
-                        <div v-else>
+                        <div v-if="showVerificationSuccess" class="pa-4 text-center">
+                        
+                            <h3 class="title font-weight-light mb-2">Welcome to our plaform</h3>
+                            <span class="caption grey--text">Thanks for signing up! you will be redirected shortly</span>
+                        </div>
+                        <div v-if="!showEmailVerificationForm && !showVerificationSuccess">
                             <v-text-field placeholder="Email" v-model="EMAILSIGNUPemailvalue"></v-text-field>
                             <v-text-field label="Password" v-model="EMAILSIGNUPpasswordvalue"></v-text-field>
                             <v-row justify="center">
@@ -61,13 +66,7 @@
             </v-layout>
         </v-window-item>
 
-        <v-window-item :value="3">
-            <div class="pa-4 text-center">
-                <!-- <v-img class="mb-4" contain height="128" src="https://cdn.vuetifyjs.com/images/logos/v.svg"></v-img> -->
-                <h3 class="title font-weight-light mb-2">Welcome to our plaform</h3>
-                <span class="caption grey--text">Thanks for signing up! you will be redirected shortly</span>
-            </div>
-        </v-window-item>
+        
     </v-window>
 
     <v-card-actions>
@@ -76,10 +75,8 @@
             Back
         </v-btn>
         <v-spacer></v-spacer>
-        <span :disabled="step === 3" color="primary" depressed @click="step++" class=" blue--text font-weight-thin caption ">Sign up with Email</span>
-        <!-- <v-btn :disabled="step === 3" color="primary" depressed @click="step++">
-            OR
-        </v-btn> -->
+        <span :disabled="step === 2" color="primary" depressed @click="step++" class=" blue--text font-weight-thin caption ">Sign up with Email</span>
+        
     </v-card-actions>
 </v-card>
 </template>
@@ -99,6 +96,8 @@ export default {
             EMAILSIGNUPpasswordvalue: null,
             EMAILSIGNUPdigit: null,
 
+            verifySuccessWindow: 3
+
         }
 
     },
@@ -116,9 +115,21 @@ export default {
         showEmailVerificationForm: function () {
 
             return this.$store.state.userSignup.verifyEmailAccount;
+        },
+        showVerificationSuccess: function () {
+           
+            return this.$store.state.userVerification.signupVerificationStatus
+
         }
     },
-
+    watch:{
+        showVerificationSuccess:function(newValue,oldValue){
+            console.log('oldvalue:',oldValue);
+          if(newValue===true){
+              this.$store.state.userSignup.verifyEmailAccount=false
+          }
+        }
+    },
     methods: {
         EMAILSIGNUPsubmit: function () {
             //:TODO validate data
@@ -133,10 +144,10 @@ export default {
         },
         EMAILVERIFYsubmit: function () {
             //:TODO validate data
-            console.log(`4 digit entered by user `)
+            console.log(`4 digit entered by user ${this.EMAILSIGNUPdigit}`)
             this.$store.dispatch('userVerification/signupemailVerificationAction', {
-                'digit': this.EMAILSIGNUPdigit,
-                'email': '' //localstorage data,
+                'code': this.EMAILSIGNUPdigit,
+                'account': localStorage.getItem('isRegisteringEmail'),
 
             })
             this.EMAILVERIFYsetempty();
@@ -158,7 +169,7 @@ export default {
             console.log(`4 digit entered by user `)
             this.$store.dispatch('userVerification/signupmobileVerificationAction', {
                 'digit': this.MOBILESIGNUPdigit,
-                'mibile': '' //localstorage data,
+                'mibile': localStorage.getItem('isRegisteringEmail') //localstorage data,
 
             })
             this.EMAILVERIFYsetempty();
