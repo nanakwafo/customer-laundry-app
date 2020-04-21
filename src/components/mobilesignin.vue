@@ -27,21 +27,32 @@ export default {
     },
     computed: {
 
-        
+         signInSuccess: function () {
+
+            return this.$store.state.userSignin.signinsuccess
+
+        }
+
     },
     watch: {
-        
+         signInSuccess: function (newValue, oldValue) {
+            console.log('oldvalue:', oldValue);
+            if (newValue === true) {
+                console.log("ready to show dashboard")
+                this.$router.push('main')
+            }
+        }
     },
     methods: {
         MOBILESIGNINsubmit: function () {
             //:TODO validate data
             console.log(`details entered by user ${this.MOBILESIGNUPmobilevalue} && ${this.MOBILESIGNUPpasswordvalue}`)
 
-            // this.$store.dispatch('userSignup/signupmobileAction', {
-            //     'mobile': this.MOBILESIGNUPmobilevalue,
-            //     'password': this.MOBILESIGNUPpasswordvalue
-            // })
-            // this.MOBILESIGNUPsetempty();
+            this.$store.dispatch('userSignin/MobilesiginAction', {
+                'login': this.MOBILESIGNUPmobilevalue,
+                'password': this.MOBILESIGNUPpasswordvalue
+            })
+            this.MOBILESIGNUPsetempty();
 
         },
         

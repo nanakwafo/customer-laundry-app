@@ -1,6 +1,6 @@
 <template>
 <v-card-text>
-    
+
     <div>
         <v-text-field label="Email" v-model="EMAILSIGNUPemailvalue"></v-text-field>
         <v-text-field label="Password" v-model="EMAILSIGNUPpasswordvalue"></v-text-field>
@@ -18,36 +18,45 @@ export default {
         return {
             EMAILSIGNUPemailvalue: null,
             EMAILSIGNUPpasswordvalue: null,
-        
+
         }
 
     },
     computed: {
+        signInSuccess: function () {
 
-      
+            return this.$store.state.userSignin.signinsuccess
+
+        }
+
     },
     watch: {
-       
+
+        signInSuccess: function (newValue, oldValue) {
+            console.log('oldvalue:', oldValue);
+            if (newValue === true) {
+                console.log("ready to show dashboard")
+                this.$router.push('main')
+            }
+        }
     },
     methods: {
         EMAILSIGNINsubmit: function () {
             //:TODO validate data
-             console.log(`details entered by user ${this.EMAILSIGNUPemailvalue} && ${this.EMAILSIGNUPpasswordvalue}`)
+            console.log(`details entered by user ${this.EMAILSIGNUPemailvalue} && ${this.EMAILSIGNUPpasswordvalue}`)
 
-            // this.$store.dispatch('userSignup/signupemailAction', {
-            //     'email': this.EMAILSIGNUPemailvalue,
-            //     'password': this.EMAILSIGNUPpasswordvalue
-            // })
-            // this.EMAILSIGNUPsetempty();
+            this.$store.dispatch('userSignin/EmailsiginAction', {
+                'login': this.EMAILSIGNUPemailvalue,
+                'password': this.EMAILSIGNUPpasswordvalue
+            })
+            this.EMAILSIGNINsetempty();
 
         },
-     
-        EMAILSIGNUPsetempty: function () {
+
+        EMAILSIGNINsetempty: function () {
             this.EMAILSIGNUPpasswordvalue = null
             this.EMAILSIGNUPemailvalue = null
         },
-
-       
 
     }
 }

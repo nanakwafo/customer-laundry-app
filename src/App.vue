@@ -17,6 +17,7 @@ export default {
             page: false,
         }
     },
+   
 
 };
 </script>

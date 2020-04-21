@@ -102,7 +102,8 @@ HomeNavBar
                 },
             ],
         }
-    }
+    },
+   
 }
 </script>
 

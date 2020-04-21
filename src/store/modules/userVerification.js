@@ -16,10 +16,10 @@ const userVerification = {
         signupemailVerificationAction: function(context, verificationDetails) {
             console.log('verification details' + JSON.stringify(verificationDetails));
             Axios
-                .post('http://localhost:8080/api/v1/User/verify', JSON.stringify(verificationDetails), {
+                .post(`${process.env.VUE_APP_ROOT_URL}/api/v1/User/verify`, JSON.stringify(verificationDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MzA4NTMsImV4cCI6MTU4NzQzNDQ1MywibmJmIjoxNTg3NDMwODUzLCJqdGkiOiJnRjdVNlljNlM1NklsNEhGIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ia9gsXTAH_S-kNB96mW3NQmxjOLkagBU-S_iBLAyG20'
+                        'Authorization': `Bearer ${process.env.VUE_APP_AUTH_TOKEN}`
                     }
                 })
                 .then(response => {
@@ -35,10 +35,10 @@ const userVerification = {
         signupmobileVerificationAction: function(context, verificationDetails) {
             console.log('verification details' + JSON.stringify(verificationDetails));
             Axios
-                .post('http://localhost:8080/api/v1/User/verify', JSON.stringify(verificationDetails), {
+                .post(`${process.env.VUE_APP_ROOT_URL}/api/v1/User/verify`, JSON.stringify(verificationDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MzQ1NDgsImV4cCI6MTU4NzQzODE0OCwibmJmIjoxNTg3NDM0NTQ4LCJqdGkiOiIyOG9ZS1RKc2EyMXhKRzlSIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3mu8fLbc-fCbeBaSaomeH0Bj8RxbNQvIWsuacG44098'
+                        'Authorization': `Bearer ${process.env.VUE_APP_AUTH_TOKEN}`
                     }
                 })
                 .then(response => {

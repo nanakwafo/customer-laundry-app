@@ -67,11 +67,13 @@
 </template>
 
 <script>
+
 import Chat from '../views/Chat'
 export default {
     components: {
         Chat
     },
+  
     data() {
         return {
             

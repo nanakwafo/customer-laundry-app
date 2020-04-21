@@ -32,9 +32,9 @@
                 </v-row>
                 <v-divider></v-divider>
                 <v-row no-gutters align="center" justify="center" style="height: 50%">
-                    <v-col no-gutters cols="6" sm="3">
-<SignInForm/>
-                    </v-col>
+                    <!-- <v-col no-gutters cols="6" sm="3"> -->
+                        <SignInForm/>
+                    <!-- </v-col> -->
 
                 </v-row>
                 <v-row no-gutters align="end" justify="center" style="height: 40%">

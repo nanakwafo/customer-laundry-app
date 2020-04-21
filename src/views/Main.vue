@@ -41,7 +41,7 @@
         <v-spacer></v-spacer>
 
 
-        <v-btn depressed color="grey lighten-5" @click="$router.push('/')">
+        <v-btn depressed color="grey lighten-5" @click="logoutAction()">
             <v-icon right>exit_to_app</v-icon>
         </v-btn>
     </v-app-bar>
@@ -54,10 +54,12 @@
 </template>
 
 <script>
+import Logout from '../mixins/logout'
 export default {
     props: {
         source: String,
     },
+    mixins:[Logout],
     data: () => ({
         drawer: null,
         links: [
@@ -99,5 +101,6 @@ export default {
             
         ],
     }),
+   
 }
 </script>
