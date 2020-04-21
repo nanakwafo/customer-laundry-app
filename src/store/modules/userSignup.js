@@ -6,7 +6,8 @@ const userSignup = {
     state: {
         signupMsg: null,
         verifyEmailAccount: false,
-        verifyPasswordAccount: false,
+        verifyMobileAccount: false,
+
     },
     mutations: {
         SignupEmailResponse: function(state, data) {
@@ -17,14 +18,15 @@ const userSignup = {
             }
 
         },
-        SignupPasswordResponse: function(state, data) {
+        SignupMobileResponse: function(state, data) {
 
 
             if (data.status == 'success') {
-                state.verifyPasswordAccount = true
+                state.verifyMobileAccount = true
             }
 
-        }
+        },
+
     },
     actions: {
         signupemailAction: function(context, signupDetails) {
@@ -33,7 +35,7 @@ const userSignup = {
                 .post('http://localhost:8080/api/v1/User/createwithoutactivation', JSON.stringify(signupDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MDU2NTQsImV4cCI6MTU4NzQwOTI1NCwibmJmIjoxNTg3NDA1NjU0LCJqdGkiOiJwUWVqMzVKSE9yM2lvbzRZIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XcYX6wqgxNPYcf0lSLJSf5g8zwlynUUK4_pQLu4Lj80'
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MzA4NTMsImV4cCI6MTU4NzQzNDQ1MywibmJmIjoxNTg3NDMwODUzLCJqdGkiOiJnRjdVNlljNlM1NklsNEhGIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.ia9gsXTAH_S-kNB96mW3NQmxjOLkagBU-S_iBLAyG20'
                     }
                 })
                 .then(response => {
@@ -54,15 +56,18 @@ const userSignup = {
 
 
             Axios
-                .post('http://localhost:8080/api/v1/User/createwithoutactivation', JSON.stringify(signupDetails), {
+                .post('http://localhost:8080/api/v1/User/createwithoutactivationmobile', JSON.stringify(signupDetails), {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MDU2NTQsImV4cCI6MTU4NzQwOTI1NCwibmJmIjoxNTg3NDA1NjU0LCJqdGkiOiJwUWVqMzVKSE9yM2lvbzRZIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.XcYX6wqgxNPYcf0lSLJSf5g8zwlynUUK4_pQLu4Lj80'
+                        'Authorization': 'Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODA4OFwvYXBpXC92MVwvdG9rZW4iLCJpYXQiOjE1ODc0MzQ1NDgsImV4cCI6MTU4NzQzODE0OCwibmJmIjoxNTg3NDM0NTQ4LCJqdGkiOiIyOG9ZS1RKc2EyMXhKRzlSIiwic3ViIjoxLCJwcnYiOiI4N2UwYWYxZWY5ZmQxNTgxMmZkZWM5NzE1M2ExNGUwYjA0NzU0NmFhIn0.3mu8fLbc-fCbeBaSaomeH0Bj8RxbNQvIWsuacG44098'
                     }
                 })
                 .then(response => {
-
-                    context.commit('SignupPasswordResponse', response.data)
+                    //store resonse to localstoage
+                    localStorage.setItem('isRegisteringMobile', response.data.Data.mobile);
+                    localStorage.setItem('isRegisteringStage', 'verification');
+                    //Return response to view   
+                    context.commit('SignupMobileResponse', response.data)
                         //log request
                 }).catch(error => {
                     console.log(error); //log

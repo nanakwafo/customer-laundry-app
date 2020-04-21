@@ -9,7 +9,7 @@
         <v-window-item :value="1">
             <v-layout column wrap>
                 <v-flex>
-                    <MobileSignupForm />
+                    <MobileSignInForm />
                 </v-flex>
             </v-layout>
 
@@ -18,7 +18,7 @@
         <v-window-item :value="2">
             <v-layout column="" wrap>
                 <v-flex>
-                    <EmailSignupForm />
+                    <EmailSignInForm />
                 </v-flex>
             </v-layout>
         </v-window-item>
@@ -31,20 +31,20 @@
             Back
         </v-btn>
         <v-spacer></v-spacer>
-        <span :disabled="step === 2" color="primary" depressed @click="step++" class=" blue--text font-weight-thin caption ">Sign up with Email</span>
+        <span :disabled="step === 2" color="primary" depressed @click="step++" class=" blue--text font-weight-thin caption ">Sign In with Email</span>
 
     </v-card-actions>
 </v-card>
 </template>
 
 <script>
-import EmailSignupForm from '../../components/emailsignup'
-import MobileSignupForm from '../../components/mobilesignup'
+import EmailSignInForm from '../../components/emailsignin'
+import MobileSignInForm from '../../components/mobilesignin'
 
 export default {
     components: {
-        EmailSignupForm,
-        MobileSignupForm
+        EmailSignInForm,
+        MobileSignInForm
 
     },
     data() {
@@ -58,9 +58,9 @@ export default {
         currentTitle() {
             switch (this.step) {
                 case 1:
-                    return 'Sign Up with Mobile Number'
+                    return 'Sign In with Mobile Number'
                 case 2:
-                    return 'Sign Up with Email Address'
+                    return 'Sign In with Email Address'
                 default:
                     return ''
             }

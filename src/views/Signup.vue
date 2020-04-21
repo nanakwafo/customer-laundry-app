@@ -26,11 +26,10 @@
 
                 <v-row no-gutters align="start" justify="end" style="height: 10%">
                     <v-col no-gutters cols="12" sm="4">
-                        <div class="text-center ">
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary">SignIn</v-btn>
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" dark>SignUp</v-btn>
+                        
+                           <HomeNavBar/>
 
-                        </div>
+                        
                     </v-col>
 
                 </v-row>
@@ -86,10 +85,12 @@
 
 <script>
 import SignUpForm from '../views/forms/signup'
+import HomeNavBar from '../components/homenavbar'
 export default {
     name: 'Home',
     components: {
-        SignUpForm
+        SignUpForm,
+        HomeNavBar
     },
     data() {
         return {

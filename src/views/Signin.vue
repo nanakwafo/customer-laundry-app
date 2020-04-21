@@ -26,18 +26,14 @@
 
                 <v-row no-gutters align="start" justify="end" style="height: 10%">
                     <v-col no-gutters cols="12" sm="4">
-                        <div class="text-center ">
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary">SignIn</v-btn>
-                            <v-btn depressed="" class="ma-2 font-weight-thin text-transform-none" rounded color="primary" dark>SignUp</v-btn>
-
-                        </div>
+                        <HomeNavBar/>
                     </v-col>
 
                 </v-row>
                 <v-divider></v-divider>
                 <v-row no-gutters align="center" justify="center" style="height: 50%">
                     <v-col no-gutters cols="6" sm="3">
-                        
+<SignInForm/>
                     </v-col>
 
                 </v-row>
@@ -45,7 +41,7 @@
                     <v-col no-gutters cols="12" sm="4">
                         <v-card flat>
                             <v-card-title>
-                                 <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Easy</span> 
+                                <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Easy</span>
                             </v-card-title>
                             <v-card-text class="font-weight-thin">
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies ne
@@ -55,7 +51,7 @@
                     <v-col no-gutters cols="12" sm="4">
                         <v-card flat>
                             <v-card-title>
-                                 <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Fast</span> 
+                                <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Fast</span>
                             </v-card-title>
                             <v-card-text class="font-weight-thin">
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies ne
@@ -64,8 +60,8 @@
                     </v-col>
                     <v-col no-gutters cols="12" sm="4">
                         <v-card flat>
-                            <v-card-title >
-                               <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Reliable</span> 
+                            <v-card-title>
+                                <v-icon left class="primary--text ">done</v-icon><span class="primary--text font-weight-thin">Reliable</span>
                             </v-card-title>
                             <v-card-text class="font-weight-thin">
                                 Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies ne
@@ -83,10 +79,13 @@
 </template>
 
 <script>
+import SignInForm from '../views/forms/signin'
+import HomeNavBar from '../components/homenavbar'
 export default {
     name: 'Home',
     components: {
-
+        SignInForm,
+        HomeNavBar
     },
     data() {
         return {
