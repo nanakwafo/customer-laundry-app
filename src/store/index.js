@@ -5,6 +5,8 @@ import userSignup from './modules/userSignup'
 import userSignin from './modules/userSignin'
 import userLogout from './modules/userLogout'
 import userVerification from './modules/userVerification'
+import userChangepassword from './modules/userChangepassword'
+import userForgotpassword from './modules/userForgotpassword'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -17,6 +19,10 @@ export default new Vuex.Store({
         userSignup,
         userSignin,
         userLogout,
-        userVerification
+        userVerification,
+        userChangepassword,
+        userForgotpassword,
+
+
     }
 })

@@ -27,10 +27,10 @@
                             </v-card-text>
                             <v-card-actions class="float-left">
 
-                              <Chat />
-                                
-                             <v-rating class="mx-4" large v-model="rating"></v-rating>
-                               
+                                <Chat />
+
+                                <v-rating class="mx-4" large v-model="rating"></v-rating>
+
                             </v-card-actions>
                         </v-col>
                         <v-col cols="12" sm="4">
@@ -53,7 +53,7 @@
                         </v-col>
                         <v-col cols="12" sm="4">
                             <div class="text-center font-weight-thin">
-                                <v-btn depressed=""  @click="$router.push('checkout')" rounded color="primary" class="font-weight-thin">Checkout Now</v-btn>
+                                <v-btn depressed="" @click="$router.push('checkout')" rounded color="primary" class="font-weight-thin">Checkout Now</v-btn>
                             </div>
                         </v-col>
                     </v-row>
@@ -67,17 +67,16 @@
 </template>
 
 <script>
-
 import Chat from '../views/Chat'
 export default {
     components: {
         Chat
     },
-  
+
     data() {
         return {
-            
-        team: [{
+
+            team: [{
                     name: 'My Laundry',
                     role: '233 Cartmell drive',
                     avatar: '/img/avatar1.png'

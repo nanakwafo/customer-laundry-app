@@ -4,8 +4,9 @@ import Home from '../views/Home.vue'
 import Main from '../views/Main.vue'
 import Signin from '../views/Signin'
 import Signup from '../views/Signup'
-import Signup from '../views/Signup'
+
 import Forgotpassword from '../views/Forgotpassword'
+import Changepassword from '../views/Changepassword'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -22,6 +23,11 @@ const routes = [{
         path: '/forgotpassword',
         name: 'Forgotpassword',
         component: Forgotpassword
+    },
+    {
+        path: '/changepassword',
+        name: 'Changepassword',
+        component: Changepassword
     },
     {
         path: '/signup',

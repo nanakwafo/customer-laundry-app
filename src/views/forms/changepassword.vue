@@ -1,7 +1,7 @@
 <template>
 <v-card class="mx-auto" flat="" max-width="500">
     <v-card-title class="title font-weight-regular justify-center">
-        <span>Forgot Password for Account</span>
+        <span>Change Password for Account</span>
 
     </v-card-title>
 
@@ -9,7 +9,7 @@
         <v-window-item>
             <v-layout column wrap>
                 <v-flex>
-                    <ForgotPasswordForm />
+                    <ChangePasswordForm />
                 </v-flex>
             </v-layout>
 
@@ -24,11 +24,11 @@
 </template>
 
 <script>
-import ForgotPasswordForm from '../../components/forgotpassword'
+import ChangePasswordForm from '../../components/changepassword'
 
 export default {
     components: {
-        ForgotPasswordForm
+        ChangePasswordForm
 
     },
     data() {
