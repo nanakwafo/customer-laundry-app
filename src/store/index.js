@@ -7,6 +7,7 @@ import userLogout from './modules/userLogout'
 import userVerification from './modules/userVerification'
 import userChangepassword from './modules/userChangepassword'
 import userForgotpassword from './modules/userForgotpassword'
+import userProfile from './modules/userProfile'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -22,6 +23,7 @@ export default new Vuex.Store({
         userVerification,
         userChangepassword,
         userForgotpassword,
+        userProfile,
 
 
     }

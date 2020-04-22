@@ -14,6 +14,7 @@
                     <v-chip class="ma-2 white--text primary" x-small>
                         Account Verified
                     </v-chip>
+                      
 
                 </p>
 

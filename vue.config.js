@@ -7,8 +7,17 @@ module.exports = {
 
     },
     devServer: {
-        proxy: 'http://localhost:8088',
-        port: 8081
+        proxy: {
+            '/auth': {
+                target: 'http://localhost:8088/',
+                pathRewrite: { '^/auth': '' }
+            },
+            '/customerresource': {
+                target: 'http://localhost:8088/',
+                pathRewrite: { '^/customerresource': '' }
+            }
+        }
+
     },
     transpileDependencies: [
         'vuetify',

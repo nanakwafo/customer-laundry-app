@@ -11,7 +11,7 @@
     </v-container>
     <v-container class="my-0">
         <v-layout row wrap>
-            <v-flex xs12 md12 lg12 v-for="person in team" :key="person.index">
+            <v-flex xs12 md12 lg12 v-for="person in visibleVendors" v-bind:visibleVendors="visibleVendors" v-bind:currentPage="currentPage" :key="person.index">
                 <v-card flat="" class="ma-3 pa-3">
                     <v-row no-gutters>
                         <v-col cols="12" sm="4">
@@ -29,7 +29,7 @@
 
                                 <Chat />
 
-                                <v-rating class="mx-4" large v-model="rating"></v-rating>
+                                <v-rating class="mx-4" large :v-model="`${person.rating}`"></v-rating>
 
                             </v-card-actions>
                         </v-col>
@@ -38,12 +38,8 @@
                                 <div class="subheading font-weight-thin">Services</div>
                                 <v-divider></v-divider>
                                 <v-row justify="start" class="font-weight-thin">
-                                    <v-checkbox class="mx-2" label="Wash and Dry"></v-checkbox>
-                                    <v-checkbox class="mx-2" label="Iron"></v-checkbox>
-                                    <v-checkbox class="mx-2" label="Dry Cleaning"></v-checkbox>
-                                    <v-checkbox class="mx-2" label="Ironing Only"></v-checkbox>
-                                    <v-checkbox class="mx-2" label="Duvets and BulkItems"></v-checkbox>
-                                    <v-checkbox class="mx-2" label="Success"></v-checkbox>
+                                    <v-checkbox v-for="p in person.service_id" :key="p.index" class="mx-2" :label="`${p.name}`"></v-checkbox>
+
                                 </v-row>
 
                                 <v-divider></v-divider>
@@ -61,6 +57,12 @@
                 </v-card>
 
             </v-flex>
+             <Pagination
+                    v-bind:vendors="vendors"
+                    v-on:page:update="updatePage"
+                    v-bind:currentPage="currentPage"
+                    v-bind:pageSize="pageSize">
+             </Pagination>
         </v-layout>
     </v-container>
 </div>
@@ -68,36 +70,374 @@
 
 <script>
 import Chat from '../views/Chat'
+import Pagination from '../components/laundry/pagination'
 export default {
     components: {
-        Chat
+        Chat,
+        Pagination
     },
 
     data() {
         return {
-
-            team: [{
+            
+            vendors: [{
                     name: 'My Laundry',
                     role: '233 Cartmell drive',
-                    avatar: '/img/avatar1.png'
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'Iron',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service2',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
+
                 },
                 {
                     name: 'Nan lejdk kjld',
                     role: 'jjdnd nbjdk',
-                    avatar: '/img/avatar1.png'
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
                 },
                 {
                     name: 'Nan lejdk kjld',
                     role: 'jjdnd nbjdk',
-                    avatar: '/img/avatar1.png'
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
                 },
                 {
                     name: 'Nan lejdk kjld',
                     role: 'jjdnd nbjdk',
-                    avatar: '/img/avatar1.png'
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
+                },
+                 {
+                    name: 'Nan lejdk kjld',
+                    role: 'jjdnd nbjdk',
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
+                },
+                 {
+                    name: 'Nan lejdk kjld',
+                    role: 'jjdnd nbjdk',
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
+                },
+                 {
+                    name: 'Nan lejdk kjld',
+                    role: 'jjdnd nbjdk',
+                    avatar: '/img/avatar1.png',
+                    rating: 3,
+                    vendor_id: 1,
+                    service_id: [{
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                        {
+                            id: 0,
+                            name: 'service1',
+                            price: 0.9
+                        },
+                    ]
                 },
             ],
-            rating: 3,
+            currentPage: 0,
+            pageSize: 2,
+            visibleVendors: []
+
+        }
+    },
+    beforeMount: function () {
+        this.updateVisibleVendors();
+    },
+    methods: {
+        updatePage: function (pageNumber) {
+            this.currentPage = pageNumber;
+            this.updateVisibleVendors();
+        },
+        updateVisibleVendors: function () {
+            this.visibleVendors = this.vendors.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+            // if we 0 visible vendors,go back a page
+            if (this.visibleVendors.length == 0 && this.currentPage > 0) {
+                this.updatePage(this.currentPage - 1);
+            }
         }
     }
 }

@@ -15,7 +15,7 @@
                 <span class="caption text-lowercase">by name</span>
             </v-btn>
         </v-layout> -->
-        <v-card flat class="mydata mx-3" v-for="project in projects" :key="project.title">
+        <v-card flat class="mydata mx-3" v-for="project in visibleOrders" v-bind:visibleOrders="visibleOrders" v-bind:currentPage="currentPage" :key="project.title">
             <v-layout row wrap :class="`pa-3 project ${project.status}`">
                 <v-flex xs6 md6>
                     <div class="caption grey--text">Order ID</div>
@@ -42,15 +42,26 @@
             <v-divider></v-divider>
 
         </v-card>
+        <Pagination
+                    v-bind:orders="orders"
+                    v-on:page:update="updatePage"
+                    v-bind:currentPage="currentPage"
+                    v-bind:pageSize="pageSize">
+             </Pagination>
     </v-container>
 </div>
 </template>
 
 <script>
+import Pagination from '../components/order/pagination'
 export default {
+      components: {
+      
+        Pagination
+    },
     data() {
         return {
-            projects: [{
+            orders: [{
                     title: 'Desoidod1',
                     person: 'kndj',
                     Dueby: 'jdjd',
@@ -82,14 +93,30 @@ export default {
                 },
 
             ],
-
+            currentPage: 0,
+            pageSize: 3,
+            visibleOrders: []
         }
 
+    },
+    beforeMount: function () {
+        this.updateVisibleOrders();
     },
     methods: {
         // sortby(prop) {
         //     this.projects.sort((a, b) => a[prop] < b[prop] ? -1 : 1)
         // }
+         updatePage: function (pageNumber) {
+            this.currentPage = pageNumber;
+            this.updateVisibleOrders();
+        },
+        updateVisibleOrders: function () {
+            this.visibleOrders = this.orders.slice(this.currentPage * this.pageSize, (this.currentPage * this.pageSize) + this.pageSize);
+            // if we 0 visible vendors,go back a page
+            if (this.visibleOrders.length == 0 && this.currentPage > 0) {
+                this.updatePage(this.currentPage - 1);
+            }
+        }
     }
 
 }

@@ -32,7 +32,7 @@ const userSignup = {
         signupemailAction: function(context, signupDetails) {
 
             Axios
-                .post(`${process.env.VUE_APP_ROOT_URL}/api/v1/User/createwithoutactivation`, JSON.stringify(signupDetails), {
+                .post(`${process.env.VUE_APP_ROOT_URL}/auth/api/v1/User/createwithoutactivation`, JSON.stringify(signupDetails), {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': `Bearer ${process.env.VUE_APP_AUTH_TOKEN}`

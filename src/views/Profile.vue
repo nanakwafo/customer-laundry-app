@@ -6,28 +6,31 @@
         <v-layout row wrap>
             <v-flex xs12 md12 lg12>
 
-                <v-tabs >
+                <v-tabs>
                     <v-tab class="font-weight-thin">
-                       
+
                         Personal Details
                     </v-tab>
                     <v-tab class="font-weight-thin">
-                         Login and Credentials
+                        Credentials
                     </v-tab>
 
                     <v-tab-item>
                         <v-card flat>
                             <v-card-text>
                                 <form>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Surname" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Firstname" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Phone Number" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Email Address" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Location Address" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Postcode" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                  
-                                    <v-btn class="mr-4" @click="submit">submit</v-btn>
-                                    <v-btn @click="clear">clear</v-btn>
+                                    <v-text-field v-model="personalDetails.lastname" label="Lastname" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.firstname"  label="Firstname" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.phonenumber"  label="Phone Number" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.email_address" label="Email Address" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.location_address" label="Location Address" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.postcode"  label="Postcode" required></v-text-field>
+
+                                    <div class="text-center">
+
+                                        <v-btn rounded color="primary" class="mr-4" @click="submitPersonalDetails">submit</v-btn>
+                                        <v-btn rounded class="amber lighten-1" @click="clearPersonalDetails"> <span class=" white--text">Clear</span></v-btn>
+                                    </div>
                                 </form>
                             </v-card-text>
                         </v-card>
@@ -35,14 +38,17 @@
                     <v-tab-item>
                         <v-card flat>
                             <v-card-text>
-                               <form>
-                                  <v-text-field v-model="name" :error-messages="nameErrors"  label="Phone Number" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Email Address" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Password" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                    <v-text-field v-model="name" :error-messages="nameErrors"  label="Stay LoggedIn for faster purchases" required @input="$v.name.$touch()" @blur="$v.name.$touch()"></v-text-field>
-                                  
-                                    <v-btn class="mr-4" @click="submit">submit</v-btn>
-                                    <v-btn @click="clear">clear</v-btn>
+                                <form>
+                                    <v-text-field v-model="credentials.phonenumber"  label="Phone Number" required></v-text-field>
+                                    <v-text-field v-model="credentials.email_address"  label="Email Address" required></v-text-field>
+                                    <v-text-field v-model="credentials.password"  label="Password" required></v-text-field>
+
+                                    <div class="text-center">
+
+                                        <v-btn rounded color="primary" class="mr-4" @click="submitCredential">submit</v-btn>
+                                        <v-btn rounded class="amber lighten-1" @click="clearCredential"> <span class=" white--text">Clear</span></v-btn>
+                                    </div>
+
                                 </form>
                             </v-card-text>
                         </v-card>
@@ -57,48 +63,70 @@
 </template>
 
 <script>
-import { validationMixin } from 'vuelidate'
-  import { required, maxLength} from 'vuelidate/lib/validators'
+export default {
 
-  export default {
-    mixins: [validationMixin],
-
-    validations: {
-      name: { required, maxLength: maxLength(10) },
-    
-      
+    data() {
+        return {
+            personalDetails: {
+                lastname :null,
+                firstname :null,
+                phonenumber : null,
+                email_address : null,
+                location_address : null,
+                postcode : null
+            },
+            credentials: {
+                phonenumber : null,
+                email_address : null,
+                password : null
+            }
+        }
     },
 
-    data: () => ({
-      name: '',
-    
-      
-    }),
-
     computed: {
-     
-      nameErrors () {
-        const errors = []
-        if (!this.$v.name.$dirty) return errors
-        !this.$v.name.maxLength && errors.push('Name must be at most 10 characters long')
-        !this.$v.name.required && errors.push('Name is required.')
-        return errors
-      },
-     
+
     },
 
     methods: {
-      submit () {
-        this.$v.$touch()
-      },
-      clear () {
-        this.$v.$reset()
-        this.name = ''
-       
-     
-      },
+        submitPersonalDetails: function () {
+            //:TODO validate data
+            console.log(`details entered by user ${this.personalDetails.lastname} && ${this.personalDetails.firstname}`)
+            this.$store.dispatch('userProfile/updateprofileAction', {
+                'lastname': this.personalDetails.lastname,
+                'firstname': this.personalDetails.firstname,
+                'phonenumber': this.personalDetails.phonenumber,
+                'email_address': this.personalDetails.email_address,
+                'location_address': this.personalDetails.location_address,
+                'postcode': this.postcode,
+            })
+            this.clearPersonalDetails();
+        },
+        clearPersonalDetails: function () {
+                 this.personalDetails.lastname =null,
+                 this.personalDetails.firstname =null,
+                 this.personalDetails.phonenumber =null,
+                 this.personalDetails.email_address =null,
+                 this.personalDetails.location_address =null,
+                 this.postcode =null
+        },
+        submitCredential:function(){
+             //:TODO validate data
+            console.log(`details entered by user ${this.credentials.phonenumber} && ${this.credentials.email_address}`)
+            this.$store.dispatch('profile/updatecredentialsAction', {
+                'phonenumber': this.credentials.phonenumber,
+                'email_address': this.credentials.email_address,
+                'password': this.credentials.password,
+             
+            })
+        this.clearCredential();
+        },
+         clearCredential: function () {
+                  this.credentials.phonenumber=null,
+               this.credentials.email_address=null,
+              this.credentials.password=null
+        },
     },
-  }
+}
 </script>
 
 <style scoped>
