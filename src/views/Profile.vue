@@ -17,14 +17,15 @@
 
                     <v-tab-item>
                         <v-card flat>
+                            <Alert v-if="personalDetails.savedSuccess" :typeAlert="`${personalDetails.alertType}`" :msgAlert="`${Profile.successMsg}`"></Alert>
                             <v-card-text>
                                 <form>
                                     <v-text-field v-model="personalDetails.lastname" label="Lastname" required></v-text-field>
-                                    <v-text-field v-model="personalDetails.firstname"  label="Firstname" required></v-text-field>
-                                    <v-text-field v-model="personalDetails.phonenumber"  label="Phone Number" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.firstname" label="Firstname" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.phonenumber" label="Phone Number" required></v-text-field>
                                     <v-text-field v-model="personalDetails.email_address" label="Email Address" required></v-text-field>
                                     <v-text-field v-model="personalDetails.location_address" label="Location Address" required></v-text-field>
-                                    <v-text-field v-model="personalDetails.postcode"  label="Postcode" required></v-text-field>
+                                    <v-text-field v-model="personalDetails.postcode" label="Postcode" required></v-text-field>
 
                                     <div class="text-center">
 
@@ -39,9 +40,9 @@
                         <v-card flat>
                             <v-card-text>
                                 <form>
-                                    <v-text-field v-model="credentials.phonenumber"  label="Phone Number" required></v-text-field>
-                                    <v-text-field v-model="credentials.email_address"  label="Email Address" required></v-text-field>
-                                    <v-text-field v-model="credentials.password"  label="Password" required></v-text-field>
+                                    <v-text-field v-model="credentials.phonenumber" label="Phone Number" required></v-text-field>
+                                    <v-text-field v-model="credentials.email_address" label="Email Address" required></v-text-field>
+                                    <v-text-field v-model="credentials.password" label="Password" required></v-text-field>
 
                                     <div class="text-center">
 
@@ -63,22 +64,31 @@
 </template>
 
 <script>
+import Alert from '../components/alert'
+import messages from '../mixins/messages'
 export default {
+    components: {
+        Alert,
 
+    },
+    mixins: [messages],
     data() {
         return {
+
             personalDetails: {
-                lastname :null,
-                firstname :null,
-                phonenumber : null,
-                email_address : null,
-                location_address : null,
-                postcode : null
+                lastname: null,
+                firstname: null,
+                phonenumber: null,
+                email_address: null,
+                location_address: null,
+                postcode: null,
+                savedSuccess: false,
+                alertType: null,
             },
             credentials: {
-                phonenumber : null,
-                email_address : null,
-                password : null
+                phonenumber: null,
+                email_address: null,
+                password: null
             }
         }
     },
@@ -88,9 +98,13 @@ export default {
     },
 
     methods: {
+
         submitPersonalDetails: function () {
+            
             //:TODO validate data
+            //log data in browser
             console.log(`details entered by user ${this.personalDetails.lastname} && ${this.personalDetails.firstname}`)
+            //save data to db
             this.$store.dispatch('userProfile/updateprofileAction', {
                 'lastname': this.personalDetails.lastname,
                 'firstname': this.personalDetails.firstname,
@@ -99,31 +113,40 @@ export default {
                 'location_address': this.personalDetails.location_address,
                 'postcode': this.postcode,
             })
+            //empty textboxes
             this.clearPersonalDetails();
+            //show success alert
+            this.personalDetails.savedSuccess = true
+            this.personalDetails.alertType = 'success'
+            //close succes message automatically
+            setTimeout(function () {
+                this.personalDetails.savedSuccess = false
+            }.bind(this), 4000);
+
         },
         clearPersonalDetails: function () {
-                 this.personalDetails.lastname =null,
-                 this.personalDetails.firstname =null,
-                 this.personalDetails.phonenumber =null,
-                 this.personalDetails.email_address =null,
-                 this.personalDetails.location_address =null,
-                 this.postcode =null
+            this.personalDetails.lastname = null,
+                this.personalDetails.firstname = null,
+                this.personalDetails.phonenumber = null,
+                this.personalDetails.email_address = null,
+                this.personalDetails.location_address = null,
+                this.postcode = null
         },
-        submitCredential:function(){
-             //:TODO validate data
+        submitCredential: function () {
+            //:TODO validate data
             console.log(`details entered by user ${this.credentials.phonenumber} && ${this.credentials.email_address}`)
             this.$store.dispatch('profile/updatecredentialsAction', {
                 'phonenumber': this.credentials.phonenumber,
                 'email_address': this.credentials.email_address,
                 'password': this.credentials.password,
-             
+
             })
-        this.clearCredential();
+            this.clearCredential();
         },
-         clearCredential: function () {
-                  this.credentials.phonenumber=null,
-               this.credentials.email_address=null,
-              this.credentials.password=null
+        clearCredential: function () {
+            this.credentials.phonenumber = null,
+                this.credentials.email_address = null,
+                this.credentials.password = null
         },
     },
 }
