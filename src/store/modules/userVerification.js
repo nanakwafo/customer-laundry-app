@@ -23,11 +23,11 @@ const userVerification = {
                     }
                 })
                 .then(response => {
-                    console.log(response.data.status);
+                    //console.log(response.data.status);
                     context.commit('signupVerificationStatus', response.data)
                         //log request
                 }).catch(error => {
-                    console.log(error); //log
+                    //console.log(error); //log
 
                 })
 
@@ -42,11 +42,11 @@ const userVerification = {
                     }
                 })
                 .then(response => {
-                    console.log(response.data.status);
+                  //  console.log(response.data.status);
                     context.commit('signupVerificationStatus', response.data)
                         //log request
                 }).catch(error => {
-                    console.log(error); //log
+                 //   console.log(error); //log
 
                 })
 
