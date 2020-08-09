@@ -9,11 +9,11 @@ module.exports = {
     devServer: {
         proxy: {
             '/auth': {
-                target: 'http://localhost:8088/',
+                target: 'http://3.16.196.105:8088',
                 pathRewrite: { '^/auth': '' }
             },
             '/customerresource': {
-                target: 'http://localhost:8088/',
+                target: 'http://3.16.196.105:8088',
                 pathRewrite: { '^/customerresource': '' }
             }
         }

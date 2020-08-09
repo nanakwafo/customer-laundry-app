@@ -30,7 +30,7 @@ const userProfile = {
                     }
                 })
                 .then(response => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     //store data in localstorage
                     context.commit('profileSavedResponse', response.data)
 
@@ -49,7 +49,7 @@ const userProfile = {
                     }
                 })
                 .then(response => {
-                    console.log(response.data);
+                    //console.log(response.data);
                     //store data in localstorage
                     context.commit('profileSavedResponse', response.data)
 
